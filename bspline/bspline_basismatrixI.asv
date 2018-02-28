@@ -1,0 +1,22 @@
+function [B,x] = bspline_basismatrixI(n,u,t)
+% B-spline basis function value matrix B(n) for x.
+%
+% Input arguments:
+% n:
+%    B-spline order (2 for linear, 3 for quadratic, etc.)
+% t:
+%    knot vector
+% x (optional):
+%    an m-dimensional vector of values where the basis function is to be
+%    evaluated
+%
+% Output arguments:
+% B:
+%    a matrix of m rows and numel(t)-n columns
+
+% Copyright 2010 Levente Hunyadi
+
+B = zeros(numel(t),numel(u));
+for j = 0 : numel(u)
+    B(:,j+1) = bspline_basis(j,n,u,t);
+end
